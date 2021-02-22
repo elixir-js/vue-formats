@@ -1,0 +1,13 @@
+.vf-money {
+    padding: .25rem .5rem;
+    border-radius: .25rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    font-family: cursive;
+    font-size: 1.4rem !important
+}
+
+.vf-money:focus {
+    outline: none;
+}

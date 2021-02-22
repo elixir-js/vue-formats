@@ -1,5 +1,8 @@
 export default {
     name: 'InputFormats',
+    components: {
+        VueMoney: () => import('./components/money'),
+    },
     props: {
         type: {
             type: String,
@@ -9,17 +12,17 @@ export default {
     data() {
         return {};
     },
-    render(h, context) {
+    render(h) {
         let template;
 
         switch (this.type) {
             case 'money':
-                template = money;
+                template = h('VueMoney', {});
                 break;
             default:
                 template = '';
         }
 
-        return h('div', {}, template);
+        return h('div', {}, [template]);
     },
 };
