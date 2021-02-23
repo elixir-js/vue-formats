@@ -1,11 +1,12 @@
 // eslint-disable-next-line radix
+import { checkToOnlyNumber, moneyFormat } from "../utils/regexp";
 
 export default {
   name: "VueMoney",
   props: {
     min_max: {
       type: Array,
-      default: () => [1, 10],
+      default: () => [],
     },
   },
   data() {
@@ -16,9 +17,9 @@ export default {
   methods: {
     onInput(e) {
       const value = e.target.value.replaceAll(",", "");
-      const formatMoney = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+      const formatMoney = moneyFormat(value);
       if (
-        !/^-?\d*$/.test(value) ||
+        !checkToOnlyNumber(value) ||
         (this.min_max.length &&
           (this.min_max[0] > +value || +value > this.min_max[1]))
       ) {
