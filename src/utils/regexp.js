@@ -1,7 +1,4 @@
-export const checkToOnlyNumber = function (value) {
-  return /^-?\d*$/.test(value);
-};
+export const checkToOnlyNumber = (value) => /^-?\d*$/.test(value);
 
-export const moneyFormat = function (value) {
-  return value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-};
+export const moneyFormat = (value) =>
+  value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
