@@ -7,4 +7,5 @@ module.exports = {
   // },
   testRegex: "(/tests/.*|(\\.|/)(test|spec))\\.(t|j)s?$",
   moduleFileExtensions: ["ts", "js"],
+  collectCoverage: true,
 };

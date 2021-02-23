@@ -4,7 +4,7 @@
   "description": "Vue library for input formats",
   "main": "./src/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --config jest.config.js",
     "lint": "eslint --ext .js, --ignore-path .gitignore .",
     "dev": "webpack --mode development",
     "build": "webpack"
