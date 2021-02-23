@@ -1,7 +1,21 @@
 {
-  "env": {
-    "test": {
-      "plugins": ["@babel/plugin-transform-modules-commonjs"]
-    }
-  }
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "modules": "commonjs",
+                "loose": true
+            }
+        ]
+    ],
+    "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-class-properties",
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "regenerator": true
+            }
+        ]
+    ]
 }
