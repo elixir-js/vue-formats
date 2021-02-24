@@ -2,7 +2,7 @@
     "name": "vue-formats",
     "version": "0.0.1",
     "description": "Vue library for input formats",
-    "main": "./src/index.js",
+    "main": "dist/main.js",
     "scripts": {
         "test": "jest --config jest.config.js",
         "lint": "eslint src",
@@ -15,6 +15,14 @@
         "jest"
     ],
     "author": "Mahmudov Jovid <voidjmp@mail.ru>",
+    "bugs": {
+        "url": "https://github.com/VoIdJMp/vue-formats/issues"
+    },
+    "homepage": "https://github.com/VoIdJMp/vue-formats",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/VoIdJMp/vue-formats.git"
+    },
     "devDependencies": {
         "@babel/core": "^7.1.2",
         "@babel/eslint-parser": "^7.12.1",
