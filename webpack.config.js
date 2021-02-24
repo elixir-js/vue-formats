@@ -22,7 +22,7 @@ module.exports = {
         ],
     },
     output: {
-        filename: "[contenthash].js",
+        filename: "[name].js",
         path: path.resolve(__dirname, "dist"),
     },
     plugins: [new CleanWebpackPlugin()],
