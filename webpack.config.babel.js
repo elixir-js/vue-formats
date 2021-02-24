@@ -40,3 +40,4 @@ module.exports = (env) => ({
     },
     plugins: [new CleanWebpackPlugin()],
 });
+
