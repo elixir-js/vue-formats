@@ -1,29 +1,28 @@
-const generateTemplateByType = (type, func) => {
-    switch (type) {
-        case "money":
-            return func("VueMoney", {});
-        default:
-            return "";
-    }
-};
 export default {
-    name: "InputFormats",
+    name: 'InputFormats',
     components: {
-        VueMoney: () => import("./components/money"),
+        VueMoney: () => import('./components/money'),
     },
     props: {
         type: {
             type: String,
-            default: "money",
+            default: 'money',
         },
     },
     data() {
         return {};
     },
-
     render(h) {
-        const template = generateTemplateByType(this.type);
+        let template;
 
-        return h("div", {}, [template]);
+        switch (this.type) {
+            case 'money':
+                template = h('VueMoney', {});
+                break;
+            default:
+                template = '';
+        }
+
+        return h('div', {}, [template]);
     },
 };
