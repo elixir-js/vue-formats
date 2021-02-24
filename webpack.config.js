@@ -35,5 +35,5 @@ module.exports = {
         },
         modules: [appPath, nodeModulesPath],
     },
-    mode: "production",
+    mode: "development",
 };
