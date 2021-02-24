@@ -6,7 +6,7 @@ import { name } from "./package.json";
 const appPath = path.resolve(__dirname, "./src");
 const nodeModulesPath = path.resolve("./node_modules");
 
-module.exports = {
+module.exports = (env) => ({
     entry: {
         main: "./src/index.js",
     },
@@ -31,10 +31,12 @@ module.exports = {
         },
         modules: [appPath, nodeModulesPath],
     },
-    mode: "development",
+    mode: env.BUILD_ENV || "development",
     output: {
         filename: name + ".js",
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, env.BUILD_FOLDER || "dist"),
+        library: "vueFormats",
+        libraryTarget: "umd",
     },
     plugins: [new CleanWebpackPlugin()],
-};
+});
