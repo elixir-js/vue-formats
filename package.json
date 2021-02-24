@@ -4,7 +4,10 @@
   "description": "Vue library for input formats",
   "main": "./src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint --ext .js, --ignore-path .gitignore .",
+    "dev": "webpack --mode development",
+    "build": "webpack"
   },
   "keywords": [
     "js",
@@ -21,16 +24,18 @@
     "@typescript-eslint/parser": "^4.11.1",
     "autoprefixer": "^9.1.5",
     "babel-loader": "^8.0.4",
+    "css-loader": "^5.0.2",
     "cssnano": "^4.1.4",
     "dot-prop": ">=5.1.1",
-    "eslint": "^7.17.0",
+    "eslint": "^7.20.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^7.1.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-vue": "^7.6.0",
     "jest": "^26.6.3",
     "kind-of": ">=6.0.3",
     "lodash": ">=4.17.19",
@@ -40,8 +45,14 @@
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-json": "^3.1.0",
+    "style-loader": "^2.0.0",
     "stylus": "^0.54.5",
-    "typescript": "^4.1.3"
+    "typescript": "^4.1.3",
+    "webpack": "^5.24.0",
+    "webpack-cli": "^4.5.0"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "clean-webpack-plugin": "^3.0.0"
+  }
 }
