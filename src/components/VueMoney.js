@@ -17,7 +17,6 @@ export default {
         onInput(event) {
             const value = event.target.value.replaceAll(",", "");
             const formatMoney = moneyFormat(value);
-
             if (
                 !checkToOnlyNumber(value) ||
                 (this.minMax.length && (this.minMax[0] > +value || +value > this.minMax[1]))
