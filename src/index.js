@@ -1,5 +1,6 @@
-import InputFormats from "./app";
+import InputFormats from "./App";
 import { version } from "../package.json";
+
 import "@assets/css/main.css";
 
 InputFormats.version = version;
