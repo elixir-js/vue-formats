@@ -27,8 +27,6 @@ export default {
         return {};
     },
     render(createElement) {
-        const template = createTemplateByType(this.type, createElement);
-
-        return createElement("div", {}, [template]);
+        return createTemplateByType(this.type, createElement);
     },
 };
