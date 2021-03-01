@@ -1,11 +1,12 @@
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const { name } = require('./package.json')
+import * as path from "path";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+
+import { name } from "./package.json";
 
 const appPath = path.resolve(__dirname, "./src");
 const nodeModulesPath = path.resolve("./node_modules");
 
-module.exports = {
+module.exports = (env) => ({
     entry: {
         main: "./src/index.js",
     },
@@ -22,11 +23,6 @@ module.exports = {
             },
         ],
     },
-    output: {
-        filename: name + ".js",
-        path: path.resolve(__dirname, "dist"),
-    },
-    plugins: [new CleanWebpackPlugin()],
     resolve: {
         extensions: [".js", ".ts"],
         alias: {
@@ -35,5 +31,13 @@ module.exports = {
         },
         modules: [appPath, nodeModulesPath],
     },
-    mode: "development",
-};
+    mode: env.BUILD_ENV || "development",
+    output: {
+        filename: name + ".js",
+        path: path.resolve(__dirname, env.BUILD_FOLDER || "dist"),
+        library: "vueFormats",
+        libraryTarget: "umd",
+    },
+    plugins: [new CleanWebpackPlugin()],
+});
+

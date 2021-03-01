@@ -14,23 +14,22 @@ export default {
         };
     },
     methods: {
-        onInput(e) {
-            const value = e.target.value.replaceAll(",", "");
+        onInput(event) {
+            const value = event.target.value.replaceAll(",", "");
             const formatMoney = moneyFormat(value);
-
             if (
                 !checkToOnlyNumber(value) ||
                 (this.minMax.length && (this.minMax[0] > +value || +value > this.minMax[1]))
             ) {
-                e.target.value = this.oldValue;
+                event.target.value = this.oldValue;
             } else {
-                e.target.value = formatMoney;
+                event.target.value = formatMoney;
                 this.oldValue = formatMoney;
             }
         },
     },
-    render(h) {
-        return h("input", {
+    render(createElement) {
+        return createElement("input", {
             attrs: { type: "text", name: "money-input", class: "vf-money" },
             on: { input: this.onInput },
         });
