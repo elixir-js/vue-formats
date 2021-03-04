@@ -3,7 +3,13 @@ import { checkToOnlyNumber, moneyFormat } from "@utils/moneyUtils";
 export default {
     name: "VueMoney",
     props: {
-        minMax: {
+        value: {
+            required: true,
+            type: [Number, String],
+            default: 0
+        },
+
+        min_max: {
             type: Array,
             default: () => [],
         },
@@ -13,25 +19,36 @@ export default {
             oldValue: "",
         };
     },
+    watch: {
+        value: {
+            immediate: true,
+            handler (newValue) {
+                this.oldValue =  moneyFormat(newValue)
+                this.value = moneyFormat(newValue)
+            }
+        }
+    },
     methods: {
-        onInput(event) {
-            const value = event.target.value.replaceAll(",", "");
+        onInput(e) {
+            const value = e.target.value.replaceAll(",", "");
             const formatMoney = moneyFormat(value);
             if (
                 !checkToOnlyNumber(value) ||
-                (this.minMax.length && (this.minMax[0] > +value || +value > this.minMax[1]))
+                (this.min_max.length &&
+                    (this.min_max[0] > +value || +value > this.min_max[1]))
             ) {
-                event.target.value = this.oldValue;
+                e.target.value = this.oldValue;
             } else {
-                event.target.value = formatMoney;
+                e.target.value = formatMoney;
                 this.oldValue = formatMoney;
             }
+            this.$emit('input', e.target.value)
         },
     },
-    render(createElement) {
-        return createElement("input", {
-            attrs: { type: "text", name: "money-input", class: "vf-money" },
-            on: { input: this.onInput },
+    render(h) {
+        return h("input", {
+            attrs: { type: "text", name: "money-input", class: "vf-money", value: this.value },
+            on: { input: this.onInput }
         });
     },
 };
