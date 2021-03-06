@@ -23,24 +23,24 @@ export default {
         }
     },
     methods: {
-        onInput(e) {
-            const value = e.target.value.replaceAll(",", "");
+        onInput(event) {
+            const value = event.target.value.replaceAll(",", "");
             const formatMoney = moneyFormat(value);
             if (
                 !checkToOnlyNumber(value) ||
                 (this.min_max.length &&
                     (this.min_max[0] > +value || +value > this.min_max[1]))
             ) {
-                e.target.value = this.oldValue;
+                event.target.value = this.oldValue;
             } else {
-                e.target.value = formatMoney;
+                event.target.value = formatMoney;
                 this.oldValue = formatMoney;
             }
             this.$emit('input', value)
         },
     },
-    render(h) {
-        return h("input", {
+    render(createElement) {
+        return createElement("input", {
             attrs: { type: "text", name: "money-input", class: "vf-money", value: this.currentValue },
             on: { input: this.onInput }
         });
