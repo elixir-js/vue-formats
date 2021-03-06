@@ -1,10 +1,12 @@
 import { checkToOnlyNumber, moneyFormat } from "@utils/moneyUtils";
 
+const defaultOptions = { prefix: '', suffix: '', }
+
 export default {
     name: "VueMoney",
     props: {
         value: { required: true, type: [Number, String], default: 0 },
-        min_max: { type: Array, default: () => [],},
+        options: { type: Object, default: () => defaultOptions}
     },
     data() {
         return {
@@ -16,7 +18,6 @@ export default {
         value: {
             immediate: true,
             handler (newValue) {
-                this.oldValue = moneyFormat(newValue)
                 this.currentValue = moneyFormat(this.value)
                 this.$emit('input', newValue.replaceAll(",", ""))
             }
@@ -26,15 +27,9 @@ export default {
         onInput(event) {
             const value = event.target.value.replaceAll(",", "");
             const formatMoney = moneyFormat(value);
-            if (
-                !checkToOnlyNumber(value) ||
-                (this.min_max.length &&
-                    (this.min_max[0] > +value || +value > this.min_max[1]))
-            ) {
-                event.target.value = this.oldValue;
-            } else {
-                event.target.value = formatMoney;
-                this.oldValue = formatMoney;
+            if(!checkToOnlyNumber(value)) event.target.value = this.oldValue;
+            else {
+                event.target.value = this.oldValue = formatMoney;
             }
             this.$emit('input', value)
         },

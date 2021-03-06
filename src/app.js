@@ -2,12 +2,12 @@ const TemplateType = {
     MONEY: "VueMoney",
 };
 
-const createTemplateByType = (type, value, emitInput, createElement) => {
+const createTemplateByType = (type, value, options, emitInput, createElement) => {
     switch (type) {
         case TemplateType.MONEY:
             return createElement(TemplateType.MONEY,
                 {
-                    props: { value },
+                    props: { value, options },
                     on: { input: emitInput }
                 },
             );
@@ -25,9 +25,7 @@ export default {
     props: {
         type: { type: String, default: TemplateType.MONEY },
         value: { required: true, type: [Number, String], default: 0 },
-    },
-    data() {
-        return {};
+        options: { type: Object },
     },
     methods: {
         emitInput(event) {
@@ -35,6 +33,6 @@ export default {
         }
     },
     render(createElement) {
-        return createTemplateByType(this.type, this.value, this.emitInput, createElement);
+        return createTemplateByType(this.type, this.value, this.options,  this.emitInput, createElement);
     },
 };
