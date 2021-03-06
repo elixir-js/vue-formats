@@ -1,6 +1,6 @@
 {
     "name": "vue-formats",
-    "version": "0.0.6",
+    "version": "0.0.13",
     "description": "Vue library for input formats",
     "main": "dist/vue-formats.js",
     "scripts": {
